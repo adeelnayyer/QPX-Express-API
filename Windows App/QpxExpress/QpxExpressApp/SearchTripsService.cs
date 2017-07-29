@@ -88,7 +88,7 @@ namespace QpxExpressApp
                                     break;
                                 }
 
-                                departureDate = departureDate.AddDays(-1);
+                                arrivalDate = arrivalDate.AddDays(-1);
                             }
                         }
 
