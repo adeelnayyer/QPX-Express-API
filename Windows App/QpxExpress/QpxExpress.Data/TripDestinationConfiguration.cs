@@ -29,12 +29,18 @@ namespace QpxExpress.Data
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.Code).HasColumnName(@"Code").HasColumnType("nvarchar").IsRequired().HasMaxLength(10);
+            Property(x => x.CountryId).HasColumnName(@"CountryId").HasColumnType("int").IsRequired();
             Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
-            Property(x => x.Country).HasColumnName(@"Country").HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
-            Property(x => x.Airline).HasColumnName(@"Airline").HasColumnType("nvarchar").IsRequired().HasMaxLength(3);
+            Property(x => x.Code).HasColumnName(@"Code").HasColumnType("nvarchar").IsRequired().HasMaxLength(10);
+            Property(x => x.Airline).HasColumnName(@"Airline").HasColumnType("nvarchar").IsRequired().HasMaxLength(10);
+            Property(x => x.BusinessClass).HasColumnName(@"BusinessClass").HasColumnType("bit").IsRequired();
+            Property(x => x.Connections).HasColumnName(@"Connections").HasColumnType("tinyint").IsRequired();
             Property(x => x.DepartureDay).HasColumnName(@"DepartureDay").HasColumnType("tinyint").IsOptional();
             Property(x => x.ArrivalDay).HasColumnName(@"ArrivalDay").HasColumnType("tinyint").IsOptional();
+            Property(x => x.UpdatedOn).HasColumnName(@"UpdatedOn").HasColumnType("datetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.Country).WithMany(b => b.TripDestinations).HasForeignKey(c => c.CountryId).WillCascadeOnDelete(false); // FK_TripDestination_Country
         }
     }
 

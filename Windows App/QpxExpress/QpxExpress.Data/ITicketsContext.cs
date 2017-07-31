@@ -19,6 +19,9 @@ namespace QpxExpress.Data
         System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
         System.Data.Entity.DbSet<Trip> Trips { get; set; } // Trip
         System.Data.Entity.DbSet<TripDestination> TripDestinations { get; set; } // TripDestination
+        System.Data.Entity.DbSet<VwRemainingTrip> VwRemainingTrips { get; set; } // vw_RemainingTrips
+        System.Data.Entity.DbSet<VwTrip> VwTrips { get; set; } // vw_Trip
+        System.Data.Entity.DbSet<VwTripFare> VwTripFares { get; set; } // vw_TripFare
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -34,6 +37,10 @@ namespace QpxExpress.Data
         string ToString();
 
         // Stored Procedures
+        System.Collections.Generic.List<SpGetTripFareReturnModel> SpGetTripFare(int? destinationId, string ticketType, bool? businessClass, System.DateTime? requestDate);
+        System.Collections.Generic.List<SpGetTripFareReturnModel> SpGetTripFare(int? destinationId, string ticketType, bool? businessClass, System.DateTime? requestDate, out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<SpGetTripFareReturnModel>> SpGetTripFareAsync(int? destinationId, string ticketType, bool? businessClass, System.DateTime? requestDate);
+
         int SpUpdateCountries();
         // SpUpdateCountriesAsync cannot be created due to having out parameters, or is relying on the procedure result (int)
 

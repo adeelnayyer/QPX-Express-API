@@ -14,24 +14,15 @@
 namespace QpxExpress.Data
 {
 
-    // Country
+    // vw_RemainingTrips
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.32.0.0")]
-    public class Country
+    public class VwRemainingTrip
     {
         public int Id { get; set; } // Id (Primary key)
-        public string Name { get; set; } // Name (length: 100)
-
-        // Reverse navigation
-
-        /// <summary>
-        /// Child TripDestinations where [TripDestination].[CountryId] point to this entity (FK_TripDestination_Country)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<TripDestination> TripDestinations { get; set; } // TripDestination.FK_TripDestination_Country
-
-        public Country()
-        {
-            TripDestinations = new System.Collections.Generic.List<TripDestination>();
-        }
+        public string Country { get; set; } // Country (Primary key) (length: 100)
+        public string Name { get; set; } // Name (Primary key) (length: 100)
+        public string Code { get; set; } // Code (Primary key) (length: 10)
+        public string Airline { get; set; } // Airline (Primary key) (length: 3)
     }
 
 }

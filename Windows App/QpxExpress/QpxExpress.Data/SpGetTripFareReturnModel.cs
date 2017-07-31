@@ -14,24 +14,10 @@
 namespace QpxExpress.Data
 {
 
-    // Country
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.32.0.0")]
-    public class Country
+    public class SpGetTripFareReturnModel
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Name { get; set; } // Name (length: 100)
-
-        // Reverse navigation
-
-        /// <summary>
-        /// Child TripDestinations where [TripDestination].[CountryId] point to this entity (FK_TripDestination_Country)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<TripDestination> TripDestinations { get; set; } // TripDestination.FK_TripDestination_Country
-
-        public Country()
-        {
-            TripDestinations = new System.Collections.Generic.List<TripDestination>();
-        }
+        public System.Double? Column1 { get; set; }
     }
 
 }

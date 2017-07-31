@@ -1,15 +1,11 @@
 ﻿using QpxExpress.Services;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 
 namespace QpxExpressApp
 {
     class Program
     {
-
-        static HttpClient client = new HttpClient();
-
         static void Main()
         {
             StartProcess();
@@ -45,7 +41,7 @@ namespace QpxExpressApp
             {
                 if (EnvironmentVariablesExist())
                 {
-                    new SearchTripsService().FetchTripFares().Wait();
+                    new TripFareService().FetchTripFares().Wait();
                 }
             }
             catch (AggregateException ex)

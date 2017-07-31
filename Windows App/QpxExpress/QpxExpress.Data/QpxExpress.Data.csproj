@@ -52,6 +52,9 @@
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpGetTripFareReturnModel.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="TicketsContext.cs">
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
@@ -70,6 +73,24 @@
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="TripDestinationConfiguration.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwRemainingTrip.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwRemainingTripConfiguration.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTrip.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTripConfiguration.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTripFare.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTripFareConfiguration.cs">
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
   </ItemGroup>

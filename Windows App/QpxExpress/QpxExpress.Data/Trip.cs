@@ -19,14 +19,18 @@ namespace QpxExpress.Data
     public class Trip
     {
         public int Id { get; set; } // Id (Primary key)
-        public string Country { get; set; } // Country (length: 100)
-        public string Destination { get; set; } // Destination (length: 100)
-        public string AirlineCode { get; set; } // AirlineCode (length: 3)
+        public int DestinationId { get; set; } // DestinationId
         public string TicketType { get; set; } // TicketType (length: 10)
         public System.DateTime Period { get; set; } // Period
         public double Fare { get; set; } // Fare
-        public int? CountryId { get; set; } // CountryId
-        public int? DestinationId { get; set; } // DestinationId
+        public bool BusinessClass { get; set; } // BusinessClass
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent TripDestination pointed by [Trip].([DestinationId]) (FK_Trip_TripDestination)
+        /// </summary>
+        public virtual TripDestination TripDestination { get; set; } // FK_Trip_TripDestination
     }
 
 }

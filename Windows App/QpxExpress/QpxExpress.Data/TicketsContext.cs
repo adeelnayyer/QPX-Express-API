@@ -22,6 +22,9 @@ namespace QpxExpress.Data
         public System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
         public System.Data.Entity.DbSet<Trip> Trips { get; set; } // Trip
         public System.Data.Entity.DbSet<TripDestination> TripDestinations { get; set; } // TripDestination
+        public System.Data.Entity.DbSet<VwRemainingTrip> VwRemainingTrips { get; set; } // vw_RemainingTrips
+        public System.Data.Entity.DbSet<VwTrip> VwTrips { get; set; } // vw_Trip
+        public System.Data.Entity.DbSet<VwTripFare> VwTripFares { get; set; } // vw_TripFare
 
         static TicketsContext()
         {
@@ -74,6 +77,9 @@ namespace QpxExpress.Data
             modelBuilder.Configurations.Add(new CountryConfiguration());
             modelBuilder.Configurations.Add(new TripConfiguration());
             modelBuilder.Configurations.Add(new TripDestinationConfiguration());
+            modelBuilder.Configurations.Add(new VwRemainingTripConfiguration());
+            modelBuilder.Configurations.Add(new VwTripConfiguration());
+            modelBuilder.Configurations.Add(new VwTripFareConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
@@ -81,10 +87,67 @@ namespace QpxExpress.Data
             modelBuilder.Configurations.Add(new CountryConfiguration(schema));
             modelBuilder.Configurations.Add(new TripConfiguration(schema));
             modelBuilder.Configurations.Add(new TripDestinationConfiguration(schema));
+            modelBuilder.Configurations.Add(new VwRemainingTripConfiguration(schema));
+            modelBuilder.Configurations.Add(new VwTripConfiguration(schema));
+            modelBuilder.Configurations.Add(new VwTripFareConfiguration(schema));
             return modelBuilder;
         }
 
         // Stored Procedures
+        public System.Collections.Generic.List<SpGetTripFareReturnModel> SpGetTripFare(int? destinationId, string ticketType, bool? businessClass, System.DateTime? requestDate)
+        {
+            int procResult;
+            return SpGetTripFare(destinationId, ticketType, businessClass, requestDate, out procResult);
+        }
+
+        public System.Collections.Generic.List<SpGetTripFareReturnModel> SpGetTripFare(int? destinationId, string ticketType, bool? businessClass, System.DateTime? requestDate, out int procResult)
+        {
+            var destinationIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@destinationId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = destinationId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!destinationId.HasValue)
+                destinationIdParam.Value = System.DBNull.Value;
+
+            var ticketTypeParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@ticketType", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = ticketType, Size = 10 };
+            if (ticketTypeParam.Value == null)
+                ticketTypeParam.Value = System.DBNull.Value;
+
+            var businessClassParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@businessClass", SqlDbType = System.Data.SqlDbType.Bit, Direction = System.Data.ParameterDirection.Input, Value = businessClass.GetValueOrDefault() };
+            if (!businessClass.HasValue)
+                businessClassParam.Value = System.DBNull.Value;
+
+            var requestDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@requestDate", SqlDbType = System.Data.SqlDbType.Date, Direction = System.Data.ParameterDirection.Input, Value = requestDate.GetValueOrDefault() };
+            if (!requestDate.HasValue)
+                requestDateParam.Value = System.DBNull.Value;
+
+            var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
+            var procResultData = Database.SqlQuery<SpGetTripFareReturnModel>("EXEC @procResult = [dbo].[sp_GetTripFare] @destinationId, @ticketType, @businessClass, @requestDate", destinationIdParam, ticketTypeParam, businessClassParam, requestDateParam, procResultParam).ToList();
+
+            procResult = (int) procResultParam.Value;
+            return procResultData;
+        }
+
+        public async System.Threading.Tasks.Task<System.Collections.Generic.List<SpGetTripFareReturnModel>> SpGetTripFareAsync(int? destinationId, string ticketType, bool? businessClass, System.DateTime? requestDate)
+        {
+            var destinationIdParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@destinationId", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Input, Value = destinationId.GetValueOrDefault(), Precision = 10, Scale = 0 };
+            if (!destinationId.HasValue)
+                destinationIdParam.Value = System.DBNull.Value;
+
+            var ticketTypeParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@ticketType", SqlDbType = System.Data.SqlDbType.NVarChar, Direction = System.Data.ParameterDirection.Input, Value = ticketType, Size = 10 };
+            if (ticketTypeParam.Value == null)
+                ticketTypeParam.Value = System.DBNull.Value;
+
+            var businessClassParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@businessClass", SqlDbType = System.Data.SqlDbType.Bit, Direction = System.Data.ParameterDirection.Input, Value = businessClass.GetValueOrDefault() };
+            if (!businessClass.HasValue)
+                businessClassParam.Value = System.DBNull.Value;
+
+            var requestDateParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@requestDate", SqlDbType = System.Data.SqlDbType.Date, Direction = System.Data.ParameterDirection.Input, Value = requestDate.GetValueOrDefault() };
+            if (!requestDate.HasValue)
+                requestDateParam.Value = System.DBNull.Value;
+
+            var procResultData = await Database.SqlQuery<SpGetTripFareReturnModel>("EXEC [dbo].[sp_GetTripFare] @destinationId, @ticketType, @businessClass, @requestDate", destinationIdParam, ticketTypeParam, businessClassParam, requestDateParam).ToListAsync();
+
+            return procResultData;
+        }
+
         public int SpUpdateCountries()
         {
             var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };

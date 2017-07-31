@@ -19,12 +19,34 @@ namespace QpxExpress.Data
     public class TripDestination
     {
         public int Id { get; set; } // Id (Primary key)
-        public string Code { get; set; } // Code (length: 10)
+        public int CountryId { get; set; } // CountryId
         public string Name { get; set; } // Name (length: 100)
-        public string Country { get; set; } // Country (length: 100)
-        public string Airline { get; set; } // Airline (length: 3)
+        public string Code { get; set; } // Code (length: 10)
+        public string Airline { get; set; } // Airline (length: 10)
+        public bool BusinessClass { get; set; } // BusinessClass
+        public byte Connections { get; set; } // MaxStops
         public byte? DepartureDay { get; set; } // DepartureDay
         public byte? ArrivalDay { get; set; } // ArrivalDay
+        public System.DateTime? UpdatedOn { get; set; } // UpdatedOn
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child Trips where [Trip].[DestinationId] point to this entity (FK_Trip_TripDestination)
+        /// </summary>
+        public virtual System.Collections.Generic.ICollection<Trip> Trips { get; set; } // Trip.FK_Trip_TripDestination
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Country pointed by [TripDestination].([CountryId]) (FK_TripDestination_Country)
+        /// </summary>
+        public virtual Country Country { get; set; } // FK_TripDestination_Country
+
+        public TripDestination()
+        {
+            Trips = new System.Collections.Generic.List<Trip>();
+        }
     }
 
 }
