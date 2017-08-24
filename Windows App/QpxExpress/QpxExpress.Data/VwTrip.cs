@@ -18,11 +18,13 @@ namespace QpxExpress.Data
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.32.0.0")]
     public class VwTrip
     {
+        public int Id { get; set; } // Id (Primary key)
         public int DestinationId { get; set; } // DestinationId (Primary key)
-        public string Country { get; set; } // Country (Primary key) (length: 100)
+        public string Country { get; set; } // Country (length: 100)
         public string Destination { get; set; } // Destination (Primary key) (length: 100)
         public string Code { get; set; } // Code (Primary key) (length: 10)
-        public string Airline { get; set; } // Airline (Primary key) (length: 3)
+        public string Airline { get; set; } // Airline (Primary key) (length: 10)
+        public byte Connections { get; set; } // Connections (Primary key)
         public System.DateTime Period { get; set; } // Period (Primary key)
         public string TicketType { get; set; } // TicketType (Primary key) (length: 10)
         public bool BusinessClass { get; set; } // BusinessClass (Primary key)

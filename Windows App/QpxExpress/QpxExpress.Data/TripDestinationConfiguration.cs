@@ -29,7 +29,7 @@ namespace QpxExpress.Data
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.CountryId).HasColumnName(@"CountryId").HasColumnType("int").IsRequired();
+            Property(x => x.CountryId).HasColumnName(@"CountryId").HasColumnType("int").IsOptional();
             Property(x => x.Name).HasColumnName(@"Name").HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
             Property(x => x.Code).HasColumnName(@"Code").HasColumnType("nvarchar").IsRequired().HasMaxLength(10);
             Property(x => x.Airline).HasColumnName(@"Airline").HasColumnType("nvarchar").IsRequired().HasMaxLength(10);
@@ -40,7 +40,7 @@ namespace QpxExpress.Data
             Property(x => x.UpdatedOn).HasColumnName(@"UpdatedOn").HasColumnType("datetime").IsOptional();
 
             // Foreign keys
-            HasRequired(a => a.Country).WithMany(b => b.TripDestinations).HasForeignKey(c => c.CountryId).WillCascadeOnDelete(false); // FK_TripDestination_Country
+            HasOptional(a => a.Country).WithMany(b => b.TripDestinations).HasForeignKey(c => c.CountryId).WillCascadeOnDelete(false); // FK_TripDestination_Country
         }
     }
 

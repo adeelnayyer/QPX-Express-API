@@ -55,6 +55,9 @@
     <Compile Include="SpGetTripFareReturnModel.cs">
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Temp.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="TicketsContext.cs">
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
@@ -73,6 +76,12 @@
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="TripDestinationConfiguration.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TripOld.cs">
+      <DependentUpon>TicketsDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TripOldConfiguration.cs">
       <DependentUpon>TicketsDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="VwRemainingTrip.cs">

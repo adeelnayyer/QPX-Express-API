@@ -22,6 +22,7 @@ namespace QpxExpress.Data
         public System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
         public System.Data.Entity.DbSet<Trip> Trips { get; set; } // Trip
         public System.Data.Entity.DbSet<TripDestination> TripDestinations { get; set; } // TripDestination
+        public System.Data.Entity.DbSet<TripOld> TripOlds { get; set; } // TripOld
         public System.Data.Entity.DbSet<VwRemainingTrip> VwRemainingTrips { get; set; } // vw_RemainingTrips
         public System.Data.Entity.DbSet<VwTrip> VwTrips { get; set; } // vw_Trip
         public System.Data.Entity.DbSet<VwTripFare> VwTripFares { get; set; } // vw_TripFare
@@ -77,6 +78,7 @@ namespace QpxExpress.Data
             modelBuilder.Configurations.Add(new CountryConfiguration());
             modelBuilder.Configurations.Add(new TripConfiguration());
             modelBuilder.Configurations.Add(new TripDestinationConfiguration());
+            modelBuilder.Configurations.Add(new TripOldConfiguration());
             modelBuilder.Configurations.Add(new VwRemainingTripConfiguration());
             modelBuilder.Configurations.Add(new VwTripConfiguration());
             modelBuilder.Configurations.Add(new VwTripFareConfiguration());
@@ -87,6 +89,7 @@ namespace QpxExpress.Data
             modelBuilder.Configurations.Add(new CountryConfiguration(schema));
             modelBuilder.Configurations.Add(new TripConfiguration(schema));
             modelBuilder.Configurations.Add(new TripDestinationConfiguration(schema));
+            modelBuilder.Configurations.Add(new TripOldConfiguration(schema));
             modelBuilder.Configurations.Add(new VwRemainingTripConfiguration(schema));
             modelBuilder.Configurations.Add(new VwTripConfiguration(schema));
             modelBuilder.Configurations.Add(new VwTripFareConfiguration(schema));

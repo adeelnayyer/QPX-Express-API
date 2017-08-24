@@ -19,6 +19,7 @@ namespace QpxExpress.Data
         System.Data.Entity.DbSet<Country> Countries { get; set; } // Country
         System.Data.Entity.DbSet<Trip> Trips { get; set; } // Trip
         System.Data.Entity.DbSet<TripDestination> TripDestinations { get; set; } // TripDestination
+        System.Data.Entity.DbSet<TripOld> TripOlds { get; set; } // TripOld
         System.Data.Entity.DbSet<VwRemainingTrip> VwRemainingTrips { get; set; } // vw_RemainingTrips
         System.Data.Entity.DbSet<VwTrip> VwTrips { get; set; } // vw_Trip
         System.Data.Entity.DbSet<VwTripFare> VwTripFares { get; set; } // vw_TripFare

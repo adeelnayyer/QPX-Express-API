@@ -14,19 +14,16 @@
 namespace QpxExpress.Data
 {
 
-    // vw_TripFare
+    // TripOld
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.32.0.0")]
-    public class VwTripFare
+    public class TripOld
     {
+        public int Id { get; set; } // Id (Primary key)
         public int DestinationId { get; set; } // DestinationId (Primary key)
-        public string Country { get; set; } // Country (Primary key) (length: 100)
-        public string Destination { get; set; } // Destination (Primary key) (length: 100)
-        public string Airport { get; set; } // Airport (Primary key) (length: 10)
-        public string Airline { get; set; } // Airline (Primary key) (length: 10)
-        public byte StopOvers { get; set; } // Stop Overs (Primary key)
-        public string BusinessClass { get; set; } // Business Class (Primary key) (length: 3)
         public string TicketType { get; set; } // TicketType (Primary key) (length: 10)
-        public double? Fare { get; set; } // Fare
+        public System.DateTime Period { get; set; } // Period (Primary key)
+        public double Fare { get; set; } // Fare (Primary key)
+        public bool BusinessClass { get; set; } // BusinessClass (Primary key)
     }
 
 }

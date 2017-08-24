@@ -19,12 +19,12 @@ namespace QpxExpress.Data
     public class TripDestination
     {
         public int Id { get; set; } // Id (Primary key)
-        public int CountryId { get; set; } // CountryId
+        public int? CountryId { get; set; } // CountryId
         public string Name { get; set; } // Name (length: 100)
         public string Code { get; set; } // Code (length: 10)
         public string Airline { get; set; } // Airline (length: 10)
         public bool BusinessClass { get; set; } // BusinessClass
-        public byte Connections { get; set; } // MaxStops
+        public byte Connections { get; set; } // Connections
         public byte? DepartureDay { get; set; } // DepartureDay
         public byte? ArrivalDay { get; set; } // ArrivalDay
         public System.DateTime? UpdatedOn { get; set; } // UpdatedOn

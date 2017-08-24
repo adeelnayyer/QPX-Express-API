@@ -7,6 +7,7 @@
 // Do not make changes directly to this file - edit the template instead.
 //
 // The following connection settings were used to generate this file:
+//     Connection String:      "Server=LAB-SQLS01\LAB_UAT;Database=FlightsDatabase;User ID=mpadmin;password=**zapped**;"
 // ------------------------------------------------------------------------------------------------
 // Database Edition       : Enterprise Edition (64-bit)
 // Database Engine Edition: Enterprise

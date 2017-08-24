@@ -10,8 +10,7 @@ namespace QpxExpressApp
         {
             StartProcess();
 
-            Console.WriteLine("Press any key to continue . . .");
-            Console.ReadKey();
+            Console.WriteLine("Completed !!!");
         }
 
         private static bool EnvironmentVariablesExist()
